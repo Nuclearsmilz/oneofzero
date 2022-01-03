@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "oneofzero:zero_ore_ow",
+    "oneofzero:zero_ore_nether",
+    "oneofzero:zero_ore_end",
+    "oneofzero:zero_ore_ds"
+  ]
+}

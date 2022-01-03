@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "oneofzero:raw_zero_chunk"
+  },
+  "result": "oneofzero:zero_ingot",
+  "experience": 0.0,
+  "cookingtime": 100
+}

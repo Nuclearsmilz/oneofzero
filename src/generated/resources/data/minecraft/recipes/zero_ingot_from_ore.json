@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "oneofzero:zero_ore"
+  },
+  "result": "oneofzero:zero_ingot",
+  "experience": 1.0,
+  "cookingtime": 100
+}

@@ -19,5 +19,8 @@ public class ZeroLanguageProvider extends LanguageProvider {
 		add(Registration.ZERO_ORE_NETHER.get(), "Nether Zero Ore");
 		add(Registration.ZERO_ORE_END.get(), "End Zero Ore");
 		add(Registration.ZERO_ORE_DS.get(), "Deepslate Zero Ore");
+		
+		add(Registration.RAW_ZERO_CHUNK.get(), "Raw Zero Chunk");
+		add(Registration.ZERO_INGOT.get(), "Zero Ingot");
 	}
 }

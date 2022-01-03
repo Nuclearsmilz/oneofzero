@@ -31,6 +31,11 @@ public class ZeroBlockTags extends BlockTagsProvider {
 				.add(Registration.ZERO_ORE_NETHER.get())
 				.add(Registration.ZERO_ORE_END.get())
 				.add(Registration.ZERO_ORE_DS.get());
+		tag(Registration.ZERO_ORE)
+				.add(Registration.ZERO_ORE_OW.get())
+				.add(Registration.ZERO_ORE_NETHER.get())
+				.add(Registration.ZERO_ORE_END.get())
+				.add(Registration.ZERO_ORE_DS.get());
 	}
 	
 	@Override

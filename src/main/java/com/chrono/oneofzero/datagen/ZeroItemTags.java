@@ -22,6 +22,13 @@ public class ZeroItemTags extends ItemTagsProvider {
 				.add(Registration.ZERO_ORE_NETHER_ITEM.get())
 				.add(Registration.ZERO_ORE_END_ITEM.get())
 				.add(Registration.ZERO_ORE_DS_ITEM.get());
+		tag(Tags.Items.INGOTS)
+				.add(Registration.ZERO_INGOT.get());
+		tag(Registration.ZERO_ORE_ITEM)
+				.add(Registration.ZERO_ORE_OW_ITEM.get())
+				.add(Registration.ZERO_ORE_NETHER_ITEM.get())
+				.add(Registration.ZERO_ORE_END_ITEM.get())
+				.add(Registration.ZERO_ORE_DS_ITEM.get());
 	}
 	
 	@Override
