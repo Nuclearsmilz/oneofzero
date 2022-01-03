@@ -36,7 +36,8 @@ public class Registration {
 	public static final RegistryObject<Block> ZERO_ORE_DS = BLOCKS.register("zero_ore_ds", () -> new Block(ORE_PROPS));
 	public static final RegistryObject<Item> ZERO_ORE_DS_ITEM = fromBlock(ZERO_ORE_DS);
 	
-	
+	public static final RegistryObject<Item> RAW_ZERO_CHUNK = ITEMS.register("raw_zero_chunk", () -> new Item(ITEM_PROPS));
+	public static final RegistryObject<Item> ZERO_INGOT = ITEMS.register("zero_ingot", () -> new Item(ITEM_PROPS));
 	
 	public static <B extends Block> RegistryObject<Item> fromBlock (RegistryObject<B> block) {
 		return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), ITEM_PROPS));
