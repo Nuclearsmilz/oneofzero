@@ -16,8 +16,8 @@ public class ZeroLanguageProvider extends LanguageProvider {
 		add("itemGroup." + TAB_NAME , "OneOfZero");
 		
 		add(Registration.ZERO_ORE_OW.get(), "Zero Ore");
-		add(Registration.ZERO_ORE_NETHER.get(), "End Zero Ore");
-		add(Registration.ZERO_ORE_END.get(), "Nether Zero Ore");
+		add(Registration.ZERO_ORE_NETHER.get(), "Nether Zero Ore");
+		add(Registration.ZERO_ORE_END.get(), "End Zero Ore");
 		add(Registration.ZERO_ORE_DS.get(), "Deepslate Zero Ore");
 	}
 }
