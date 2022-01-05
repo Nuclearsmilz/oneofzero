@@ -1,4 +1,4 @@
-package com.chrono.oneofzero.varia;
+package com.chrono.oneofzero.misc;
 
 import net.minecraftforge.energy.EnergyStorage;
 

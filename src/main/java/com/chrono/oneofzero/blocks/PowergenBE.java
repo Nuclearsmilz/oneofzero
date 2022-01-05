@@ -1,7 +1,7 @@
 package com.chrono.oneofzero.blocks;
 
 import com.chrono.oneofzero.setup.Registration;
-import com.chrono.oneofzero.varia.CustomEnergyStorage;
+import com.chrono.oneofzero.misc.CustomEnergyStorage;
 import net.minecraft.core.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.*;
@@ -15,9 +15,8 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.*;
 import net.minecraftforge.items.*;
-import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
+import javax.annotation.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PowergenBE extends BlockEntity {
@@ -128,13 +127,13 @@ public class PowergenBE extends BlockEntity {
 			}
 			
 			@Override
-			public boolean isItemValid (int slot, @NotNull ItemStack stack) {
+			public boolean isItemValid (int slot, @Nonnull ItemStack stack) {
 				return ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0;
 			}
 			
-			@NotNull
+			@Nonnull
 			@Override
-			public ItemStack insertItem (int slot, @NotNull ItemStack stack, boolean simulate) {
+			public ItemStack insertItem (int slot, @Nonnull ItemStack stack, boolean simulate) {
 				if (ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) <= 0) {
 					return stack;
 				}
@@ -152,9 +151,9 @@ public class PowergenBE extends BlockEntity {
 		};
 	}
 	
-	@NotNull
+	@Nonnull
 	@Override
-	public <T> LazyOptional<T> getCapability (@NotNull Capability<T> cap, @Nullable Direction side) {
+	public <T> LazyOptional<T> getCapability (@Nonnull Capability<T> cap, @Nullable Direction side) {
 		if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 			return handler.cast();
 		}
