@@ -1,16 +1,24 @@
 package com.chrono.oneofzero.setup;
 
 import com.chrono.oneofzero.OneOfZero;
+import com.chrono.oneofzero.blocks.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.*;
+import org.antlr.runtime.TokenRewriteStream;
+
+import java.awt.*;
+import java.awt.geom.NoninvertibleTransformException;
 
 import static com.chrono.oneofzero.OneOfZero.MODID;
 
@@ -18,6 +26,8 @@ public class Registration {
 	
 	private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
 	private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
+	private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, MODID);
+	private static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, MODID);
 	
 	public static void init () {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -39,6 +49,11 @@ public class Registration {
 	public static final RegistryObject<Item> ZERO_ORE_END_ITEM = fromBlock(ZERO_ORE_END);
 	public static final RegistryObject<Block> ZERO_ORE_DS = BLOCKS.register("zero_ore_ds", () -> new Block(ORE_PROPS));
 	public static final RegistryObject<Item> ZERO_ORE_DS_ITEM = fromBlock(ZERO_ORE_DS);
+	
+	public static final RegistryObject<PowergenBlock> POWERGEN = BLOCKS.register("powergen", PowergenBlock::new);
+	public static final RegistryObject<Item> POWERGEN_ITEM = fromBlock(POWERGEN);
+	public static final RegistryObject<BlockEntityType<PowergenBE>> POWERGEN_BE = BLOCK_ENTITIES.register("powergen", () -> BlockEntityType.Builder.of(PowergenBE::new, POWERGEN.get()).build(null));
+	public static final RegistryObject<MenuType<PowergenContainer>> POWERGEN_CONTAINER = CONTAINERS.register("powergen", () -> IForgeMenuType.create((windowID, inv, data) -> new PowergenContainer(windowID, data.readBlockPos(), inv, inv.player)));
 	
 	public static final RegistryObject<Item> RAW_ZERO_CHUNK = ITEMS.register("raw_zero_chunk", () -> new Item(ITEM_PROPS));
 	public static final RegistryObject<Item> ZERO_INGOT = ITEMS.register("zero_ingot", () -> new Item(ITEM_PROPS));
