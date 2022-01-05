@@ -1,5 +1,6 @@
 package com.chrono.oneofzero.blocks;
 
+import com.chrono.oneofzero.misc.CustomEnergyStorage;
 import com.chrono.oneofzero.setup.Registration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.Container;
@@ -24,7 +25,7 @@ public class PowergenContainer extends AbstractContainerMenu {
 		super(Registration.POWERGEN_CONTAINER.get(), windowID);
 		blockEntity = player.getCommandSenderWorld().getBlockEntity(pos);
 		this.playerEntity = player;
-		this.playerInventory = new InvWrapper((Container) playerInventory); //TODO: uncast container
+		this.playerInventory = new InvWrapper((Container) playerInventory);
 		
 		if (blockEntity != null) {
 			blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
@@ -46,10 +47,10 @@ public class PowergenContainer extends AbstractContainerMenu {
 			}
 			
 			@Override
-			public void set (int pValue) {
+			public void set (int value) {
 				blockEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(h -> {
 					int energyStored = h.getEnergyStored() & 0xffff0000;
-					//((CustomEnergyStorage)h).setEnergy(energyStored + (value & 0xffff));
+					((CustomEnergyStorage)h).setEnergy(energyStored + (value & 0xffff));
 				});
 			}
 		});
@@ -60,10 +61,10 @@ public class PowergenContainer extends AbstractContainerMenu {
 			}
 			
 			@Override
-			public void set (int pValue) {
+			public void set (int value) {
 				blockEntity.getCapability(CapabilityEnergy.ENERGY).ifPresent(h -> {
 					int energyStored = h.getEnergyStored() & 0x0000ffff;
-					//((CustomEnergyStorage)h).setEnergy(energyStored | (value << 16));
+					((CustomEnergyStorage)h).setEnergy(energyStored | (value << 16));
 				});
 			}
 		});
@@ -81,6 +82,8 @@ public class PowergenContainer extends AbstractContainerMenu {
 					return ItemStack.EMPTY;
 				}
 				slot.onQuickCraft(stack, itemStack);
+				// Where Shift-Clicking the item will go
+				// index refers to slot index
 			} else {
 				if(ForgeHooks.getBurnTime(stack, RecipeType.SMELTING) > 0){
 					if(!this.moveItemStackTo(stack, 0, 1, false)){

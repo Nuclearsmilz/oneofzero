@@ -41,6 +41,8 @@ public class PowergenBE extends BlockEntity {
 	@Override
 	public void setRemoved () {
 		super.setRemoved();
+		handler.invalidate();
+		energy.invalidate();
 	}
 	
 	public void tickServer () {
@@ -59,6 +61,7 @@ public class PowergenBE extends BlockEntity {
 			}
 		}
 		
+		assert level != null;
 		BlockState blockState = level.getBlockState(worldPosition);
 		if (blockState.getValue(BlockStateProperties.POWERED) != counter > 0) {
 			level.setBlock(worldPosition, blockState.setValue(BlockStateProperties.POWERED, counter > 0),
@@ -72,13 +75,14 @@ public class PowergenBE extends BlockEntity {
 		AtomicInteger capacity = new AtomicInteger(energyStorage.getEnergyStored());
 		if (capacity.get() > 0) {
 			for (Direction direction : Direction.values()) {
+				assert level != null;
 				BlockEntity be = level.getBlockEntity(worldPosition.relative(direction));
 				if (be != null) {
 					boolean doContinue = be.getCapability(CapabilityEnergy.ENERGY, direction.getOpposite()).map(handler -> {
 						if (handler.canReceive()) {
-							int recieved = handler.receiveEnergy(Math.min(capacity.get(), POWERGEN_SEND), false);
-							capacity.addAndGet(-recieved);
-							energyStorage.consumeEnergy(recieved);
+							int received = handler.receiveEnergy(Math.min(capacity.get(), POWERGEN_SEND), false);
+							capacity.addAndGet(-received);
+							energyStorage.consumeEnergy(received);
 							setChanged();
 							return capacity.get() > 0;
 						} else {
